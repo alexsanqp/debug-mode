@@ -1,0 +1,15 @@
+{
+  "name": "debug-mode",
+  "version": "1.0.0",
+  "description": "Cursor-style hypothesis-driven debugging for Claude Code. 7-phase methodology: understand, hypothesize, evidence, verdict, fix, verify, postmortem.",
+  "author": {
+    "name": "alexsanqp",
+    "url": "https://github.com/alexsanqp"
+  },
+  "repository": "https://github.com/alexsanqp/debug-mode",
+  "license": "MIT",
+  "keywords": ["debugging", "hypothesis", "cursor", "testing", "chrome-devtools"],
+  "skills": "./skills/",
+  "agents": ["./agents/debugger.md"],
+  "mcpServers": "./.mcp.json"
+}

@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "chrome-devtools": {
+      "command": "npx",
+      "args": ["-y", "chrome-devtools-mcp@0.21.0", "--no-usage-statistics"]
+    },
+    "debug-ingest": {
+      "command": "node",
+      "args": ["${CLAUDE_PLUGIN_ROOT}/server/index.js"],
+      "env": {
+        "NODE_PATH": "${CLAUDE_PLUGIN_DATA}/node_modules"
+      }
+    }
+  }
+}
