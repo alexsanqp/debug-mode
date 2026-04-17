@@ -8,7 +8,7 @@
   },
   "repository": "https://github.com/alexsanqp/debug-mode",
   "license": "MIT",
-  "keywords": ["debugging", "hypothesis", "cursor", "testing", "chrome-devtools"],
+  "keywords": ["debugging", "hypothesis", "cursor", "testing"],
   "skills": "./skills/",
   "agents": ["./agents/debugger.md"],
   "mcpServers": "./.mcp.json"

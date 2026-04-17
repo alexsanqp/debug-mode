@@ -2,8 +2,15 @@
   "name": "debug-ingest-mcp",
   "version": "1.0.0",
   "type": "module",
-  "main": "index.js",
+  "main": "dist/index.mjs",
+  "scripts": {
+    "build": "esbuild index.js --bundle --platform=node --format=esm --target=node18 --outfile=dist/index.mjs --banner:js=\"import{createRequire as _cr}from'node:module';const require=_cr(import.meta.url);\"",
+    "prepublishOnly": "npm run build"
+  },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.29.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.24.0"
   }
 }
