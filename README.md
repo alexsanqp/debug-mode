@@ -10,9 +10,13 @@ Claude doesn't guess — it investigates: forms hypotheses, instruments your cod
 claude plugin install github:alexsanqp/debug-mode
 ```
 
-Dependencies install automatically on first session start.
+Works out of the box — no `npm install`, no setup. The MCP server ships pre-bundled.
 
 Requires: **Node.js 18+**, **bash** (macOS/Linux built-in, Windows via Git Bash).
+
+### Optional: Browser Debugging MCP
+
+For frontend/UI bugs, the skill can use any browser MCP if installed separately (e.g. `chrome-devtools-mcp`, `playwright-mcp`). Install whichever you prefer — the skill auto-detects available tools.
 
 ## How It Works
 
@@ -94,8 +98,7 @@ Each line in `.claude/debug.log` (NDJSON):
 |-----------|---------|
 | **Skill** `debug-mode` | 7-phase methodology prompt |
 | **Agent** `debugger` | Subagent for complex multi-file bugs (40 turns, Sonnet) |
-| **Ingest MCP** | HTTP log server on :7242 + 5 tools |
-| **Chrome DevTools MCP** | Browser console, network, screenshots, JS eval |
+| **Ingest MCP** | HTTP log server on :7242 + 5 tools (bundled, zero-install) |
 | **Hooks** | Auto-test on Edit/Write, detect test framework, warn on leftover markers |
 
 ## Hooks
@@ -130,17 +133,30 @@ debug-mode/
 ├── skills/debug-mode/SKILL.md    # 7-phase methodology
 ├── agents/debugger.md            # Debug subagent
 ├── server/
-│   ├── index.js                  # Ingest MCP (HTTP + 5 tools)
+│   ├── index.js                  # Ingest MCP source (HTTP + 5 tools)
+│   ├── dist/index.mjs            # Pre-bundled server (committed, zero-install)
 │   └── package.json
 ├── hooks/hooks.json
 ├── scripts/
 │   ├── detect-env.sh             # Test framework detection
 │   ├── run-tests.sh              # Auto-test on file changes
 │   └── show-diff.sh              # Diff + leftover marker warning
-├── .mcp.json                     # Chrome DevTools + Ingest
+├── .mcp.json                     # Points to pre-bundled server
 ├── LICENSE
 └── README.md
 ```
+
+## Development
+
+If you're contributing to this plugin:
+
+```bash
+cd server
+npm install        # Install SDK + esbuild dev dependency
+npm run build      # Rebuild server/dist/index.mjs
+```
+
+The bundle is checked into git so end-users don't need any install step.
 
 ## License
 
